@@ -8,6 +8,11 @@ npm install @cycle/react-native@1.0.0-experimental
 ## Usage
 
 ```js
+let {Rx, run} = require('@cycle/core');
+let React = require('react-native');
+let {makeReactNativeDriver} = require('@cycle/react-native');
+let {StyleSheet, Text, View, Image, StatusBarIOS} = React;
+
 function main({RN}) {
   return {
     RN: RN.select('button').events('press')
@@ -23,7 +28,7 @@ function main({RN}) {
   };
 }
 
-Cycle.run(main, {
+run(main, {
   RN: makeReactNativeDriver('MyMobileApp'),
 });
 ```
