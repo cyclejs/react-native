@@ -1,0 +1,40 @@
+{
+  "name": "@cycle/react-native",
+  "version": "1.0.0-experimental",
+  "description": "A Cycle.js Driver for interacting with React Native",
+  "main": "lib/index.js",
+  "author": "Andre Staltz",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cyclejs/cycle-react-native"
+  },
+  "dependencies": {
+    "react-native": "0.11.0"
+  },
+  "peerDependencies": {
+    "@cycle/core": "3.x.x"
+  },
+  "devDependencies": {
+    "@cycle/core": "3.x.x",
+    "babel": "5.8.x",
+    "eslint": "1.0.x",
+    "eslint-config-cycle": "3.0.x",
+    "eslint-plugin-cycle": "1.0.x",
+    "eslint-plugin-no-class": "0.1.x",
+    "markdox": "0.1.9"
+  },
+  "scripts": {
+    "eslint": "eslint src/",
+    "test": "npm run eslint",
+    "test-ci": "npm run eslint",
+    "precompile-lib": "rm -rf lib/ && mkdir -p lib",
+    "compile-lib": "babel -d lib/ src/",
+    "docs": "node ./scripts/make-api-docs.js",
+    "prepublish": "npm run compile-lib",
+    "release": "npm run release-patch",
+    "release-patch": "git checkout master && npm version patch && git push origin master --tags && npm publish --access=public",
+    "release-minor": "git checkout master && npm version minor && git push origin master --tags && npm publish --access=public",
+    "release-major": "git checkout master && npm version major && git push origin master --tags && npm publish --access=public"
+  }
+}
