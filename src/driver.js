@@ -11,15 +11,15 @@ function makeReactNativeDriver(appKey) {
         return vtree
       }
       let newProps = {}
-      if (vtree.key === null && index !== null) {
-        newProps.key = index
+      if (vtree.selector === null && index !== null) {
+        newProps.selector = index
       }
       let wasTouched = false
-      if (handlers[vtree.key]) {
-        for (let evType in handlers[vtree.key]) {
-          if (handlers[vtree.key].hasOwnProperty(evType)) {
+      if (handlers[vtree.selector]) {
+        for (let evType in handlers[vtree.selector]) {
+          if (handlers[vtree.selector].hasOwnProperty(evType)) {
             let handlerFnName = `on${evType.charAt(0).toUpperCase()}${evType.slice(1)}`
-            newProps[handlerFnName] = handlers[vtree.key][evType].send
+            newProps[handlerFnName] = handlers[vtree.selector][evType].send
             wasTouched = true
           }
         }

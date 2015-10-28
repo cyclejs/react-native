@@ -2,7 +2,7 @@
 ## Experimental
 
 ```
-npm install @cycle/react-native@1.0.0-experimental
+npm install @cycle/react-native@1.0.0-experimental.5
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ function main({RN}) {
       .scan((x,y) => x+y)
       .map(i =>
         <View>
-          <Text style={styles.button} key="button">Increment</Text>
+          <Text style={styles.button} selector="button">Increment</Text>
           <Text>You have clicked the button {i} times.</Text>
         </View>
       ),
