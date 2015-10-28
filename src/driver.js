@@ -11,15 +11,15 @@ function makeReactNativeDriver(appKey) {
         return vtree
       }
       let newProps = {}
-      if (vtree.selector === null && index !== null) {
+      if (!vtree.props.selector && !!index) {
         newProps.selector = index
       }
       let wasTouched = false
-      if (handlers[vtree.selector]) {
-        for (let evType in handlers[vtree.selector]) {
-          if (handlers[vtree.selector].hasOwnProperty(evType)) {
+      if (handlers[vtree.props.selector]) {
+        for (let evType in handlers[vtree.props.selector]) {
+          if (handlers[vtree.props.selector].hasOwnProperty(evType)) {
             let handlerFnName = `on${evType.charAt(0).toUpperCase()}${evType.slice(1)}`
-            newProps[handlerFnName] = handlers[vtree.selector][evType].send
+            newProps[handlerFnName] = handlers[vtree.props.selector][evType].send
             wasTouched = true
           }
         }
@@ -50,16 +50,16 @@ function makeReactNativeDriver(appKey) {
     }
 
     let response = {
-      select: function select(ref) {
+      select: function select(selector) {
         return {
           observable: Rx.Observable.empty(),
           events: function events(evType) {
-            handlers[ref] = handlers[ref] || {}
-            handlers[ref][evType] = handlers[ref][evType] || new Rx.Subject()
-            handlers[ref][evType].send = function sendIntoSubject(ev = null) {
-              handlers[ref][evType].onNext(ev)
+            handlers[selector] = handlers[selector] || {}
+            handlers[selector][evType] = handlers[selector][evType] || new Rx.Subject()
+            handlers[selector][evType].send = function sendIntoSubject(ev = null) {
+              handlers[selector][evType].onNext(ev)
             }
-            return handlers[ref][evType]
+            return handlers[selector][evType]
           },
         }
       },

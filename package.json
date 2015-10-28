@@ -1,6 +1,6 @@
 {
   "name": "@cycle/react-native",
-  "version": "1.0.0-experimental.5",
+  "version": "1.0.0-experimental.6",
   "description": "A Cycle.js Driver for interacting with React Native",
   "main": "lib/index.js",
   "author": "Andre Staltz",
