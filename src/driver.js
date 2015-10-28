@@ -56,8 +56,9 @@ function makeReactNativeDriver(appKey) {
           events: function events(evType) {
             handlers[selector] = handlers[selector] || {}
             handlers[selector][evType] = handlers[selector][evType] || new Rx.Subject()
-            handlers[selector][evType].send = function sendIntoSubject(ev = null) {
-              handlers[selector][evType].onNext(ev)
+            handlers[selector][evType].send = function sendIntoSubject() {
+              const props = this
+              handlers[selector][evType].onNext(props)
             }
             return handlers[selector][evType]
           },
