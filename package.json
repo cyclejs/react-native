@@ -1,6 +1,6 @@
 {
   "name": "@cycle/react-native",
-  "version": "1.0.0-experimental.2",
+  "version": "1.0.0-experimental.3",
   "description": "A Cycle.js Driver for interacting with React Native",
   "main": "lib/index.js",
   "author": "Andre Staltz",
@@ -10,7 +10,7 @@
     "url": "https://github.com/cyclejs/cycle-react-native"
   },
   "dependencies": {
-    "react-native": "0.11.0"
+    "react-native": "0.13.1"
   },
   "peerDependencies": {
     "rx": ">=3"
