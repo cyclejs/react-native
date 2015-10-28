@@ -2,6 +2,10 @@ import React from 'react-native'
 import Rx from 'rx'
 const {AppRegistry, View} = React
 
+function isChildReactElement(child) {
+  return !!child && typeof child === `object` && child._isReactElement
+}
+
 function makeReactNativeDriver(appKey) {
   return function reactNativeDriver(vtree$) {
     let handlers = {}
@@ -25,11 +29,15 @@ function makeReactNativeDriver(appKey) {
         }
       }
       let newChildren = vtree.props.children
-      if (vtree.props.children._isReactElement || Array.isArray(vtree.props.children)) {
+      if (isChildReactElement(vtree.props.children) ||
+        Array.isArray(vtree.props.children))
+      {
         newChildren = vtree.props.children.map(augmentVTreeWithHandlers)
         wasTouched = true
       }
-      return wasTouched ? React.cloneElement(vtree, newProps, newChildren) : vtree
+      return wasTouched ?
+        React.cloneElement(vtree, newProps, newChildren) :
+        vtree
     }
 
     function componentFactory() {
