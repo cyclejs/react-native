@@ -1,5 +1,5 @@
 import React from 'react-native'
-import {Rx} from '@cycle/core'
+import Rx from 'rx'
 const {AppRegistry, View} = React
 
 function makeReactNativeDriver(appKey) {
