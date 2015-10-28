@@ -25,7 +25,7 @@ function makeReactNativeDriver(appKey) {
         }
       }
       let newChildren = vtree.props.children
-      if (Array.isArray(vtree.props.children)) {
+      if (vtree.props.children._isReactElement || Array.isArray(vtree.props.children)) {
         newChildren = vtree.props.children.map(augmentVTreeWithHandlers)
         wasTouched = true
       }
