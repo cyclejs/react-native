@@ -2,7 +2,7 @@
 ## Experimental
 
 ```
-npm install @cycle/react-native@1.0.0-experimental.9
+npm install @cycle/react-native@1.0.0-experimental.10
 ```
 
 ## Usage

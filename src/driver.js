@@ -29,11 +29,11 @@ function makeReactNativeDriver(appKey) {
         }
       }
       let newChildren = vtree.props.children
-      if (isChildReactElement(vtree.props.children) ||
-        Array.isArray(vtree.props.children))
-      {
+      if (Array.isArray(vtree.props.children)) {
         newChildren = vtree.props.children.map(augmentVTreeWithHandlers)
         wasTouched = true
+      } else if (isChildReactElement(vtree.props.children)) {
+        newChildren = augmentVTreeWithHandlers(vtree.props.children)
       }
       return wasTouched ?
         React.cloneElement(vtree, newProps, newChildren) :
