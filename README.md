@@ -2,7 +2,7 @@
 ## Experimental
 
 ```
-npm install @cycle/react-native@1.0.0-experimental.11
+npm install @cycle/react-native@1.0.0-experimental.12
 ```
 
 ## Usage
@@ -16,7 +16,7 @@ let {StyleSheet, Text, View, Image, StatusBarIOS} = React;
 function main({RN}) {
   return {
     RN: RN.select('button').events('press')
-      .map(() => +1)
+      .map(ev => +1)
       .startWith(0)
       .scan((x,y) => x+y)
       .map(i =>
