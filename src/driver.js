@@ -28,17 +28,17 @@ function makeReactNativeDriver(appKey) {
           }
         }
       }
-      let newChildren = vtree.props.children
+      let children = vtree.props.children
       if (Array.isArray(vtree.props.children)) {
-        newChildren = vtree.props.children.map(augmentVTreeWithHandlers)
-        wasTouched = true
+        return React.cloneElement(vtree, newProps,
+          ...children.map(augmentVTreeWithHandlers))
       } else if (isChildReactElement(vtree.props.children)) {
-        newChildren = augmentVTreeWithHandlers(vtree.props.children)
-        wasTouched = true
+        return React.cloneElement(vtree, newProps,
+          augmentVTreeWithHandlers(children))
+      } else if (wasTouched) {
+        return React.cloneElement(vtree, newProps, children)
       }
-      return wasTouched ?
-        React.cloneElement(vtree, newProps, newChildren) :
-        vtree
+      return vtree
     }
 
     function componentFactory() {
