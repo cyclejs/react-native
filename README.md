@@ -1,9 +1,21 @@
 # Cycle React Native Driver
 ## Experimental
 
+
+## Running on iOS
+
+Start by installing React Native [prerequisites](https://facebook.github.io/react-native/docs/getting-started.html) (XCode, react-native-cli, watchman).
+
+Then:
 ```
-npm install @cycle/react-native@1.0.0-experimental.12
+git clone git@github.com:jevakallio/cycle-react-native.git && cd cycle-react-native
+npm install
+react-native run-ios
 ```
+
+## Running on Android
+
+Good luck!
 
 ## Usage
 
