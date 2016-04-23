@@ -2,19 +2,36 @@ import React from 'react-native'
 import Rx from 'rx'
 const {AppRegistry, View} = React
 
-let handlers = {}
+const BACK_ACTION = '@@back';
+const backHandler = new Rx.Subject
+
+let handlers = {
+  [BACK_ACTION]: createHandler()
+};
+
+function createHandler() {
+  const handler = new Rx.Subject();
+  handler.send = function sendIntoSubject(...args) {
+    handler.onNext(...args)
+  }
+  return handler;
+}
+
+export function getBackHandler() {
+  return handlers[BACK_ACTION];
+}
 
 export function registerHandler(selector, evType) {
   handlers[selector] = handlers[selector] || {};
-  handlers[selector][evType] = handlers[selector][evType] || new Rx.Subject();
-  handlers[selector][evType].send = function sendIntoSubject(...args) {
-    handlers[selector][evType].onNext(...args)
-  }
-
+  handlers[selector][evType] = handlers[selector][evType] || createHandler();
   return handlers[selector][evType];
 };
 
-export function findHandler(selector, evType) {
+export function findHandler(evType, selector) {
+  if (evType === BACK_ACTION && !selector) {
+    return handlers[BACK_ACTION];
+  }
+
   if (handlers[selector].hasOwnProperty(evType)) {
     return handlers[selector][evType].send
   }
@@ -43,7 +60,7 @@ function makeReactNativeDriver(appKey) {
     }
 
     let response = {
-      select: function select(selector) {
+      select(selector) {
         return {
           observable: Rx.Observable.empty(),
           events: function events(evType) {
@@ -51,6 +68,10 @@ function makeReactNativeDriver(appKey) {
           },
         }
       },
+
+      navigateBack() {
+        return findHandler(BACK_ACTION);
+      }
     }
 
     AppRegistry.registerComponent(appKey, componentFactory)

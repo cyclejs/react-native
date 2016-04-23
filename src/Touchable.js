@@ -30,7 +30,7 @@ function createTouchableClass(className) {
 
       // find all defined touch handlers
       const handlers = Object.keys(ACTION_TYPES)
-        .map(name => [name, findHandler(selector, ACTION_TYPES[name])])
+        .map(name => [name, findHandler(ACTION_TYPES[name], selector)])
         .filter(([_, handler]) => !!handler)
         .reduce((memo, [name, handler]) => {
           // pass payload to event handler if defined
