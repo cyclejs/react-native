@@ -7,11 +7,19 @@ const {
   PropTypes
 } = React;
 
+const ACTION_TYPES = {
+  onPress: 'press',
+  onPressIn: 'pressIn',
+  onPressOut: 'pressOut',
+  onLongPress: 'longPress'
+};
+
 function createTouchableClass(className) {
   return React.createClass({
     displayName: 'Cycle' + className,
     propTypes: {
       selector: PropTypes.string.isRequired,
+      payload: PropTypes.any
     },
     setNativeProps(props) {
       this._touchable.setNativeProps(props);
@@ -19,14 +27,23 @@ function createTouchableClass(className) {
     render() {
       const TouchableClass = React[className];
       const {selector, ...props} = this.props;
+
+      // find all defined touch handlers
+      const handlers = Object.keys(ACTION_TYPES)
+        .map(name => [name, findHandler(selector, ACTION_TYPES[name])])
+        .filter(([_, handler]) => !!handler)
+        .reduce((memo, [name, handler]) => {
+          // pass payload to event handler if defined
+          memo[name] = () => handler(this.props.payload || null);
+          return memo;
+        }, {});
+
+
       return (
         <TouchableClass
           ref={view => this._touchable = view}
-          onPress={findHandler(selector, 'press')}
-          onPressIn={findHandler(selector, 'pressIn')}
-          onPressOut={findHandler(selector, 'pressOut')}
-          onLongPress={findHandler(selector, 'longPress')}
-          >
+          {...handlers}
+        >
           <View {...props}>
             {this.props.children}
           </View>

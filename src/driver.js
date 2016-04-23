@@ -8,9 +8,7 @@ export function registerHandler(selector, evType) {
   handlers[selector] = handlers[selector] || {};
   handlers[selector][evType] = handlers[selector][evType] || new Rx.Subject();
   handlers[selector][evType].send = function sendIntoSubject(...args) {
-    const props = this
-    const event = {currentTarget: {props}, args}
-    handlers[selector][evType].onNext(event)
+    handlers[selector][evType].onNext(...args)
   }
 
   return handlers[selector][evType];
