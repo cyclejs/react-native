@@ -37,11 +37,24 @@ function createAnimationDongle(className) {
       const AnimatedClass = Animated[className];
       const { animate } = this.props;
 
-      const animatedStyle = Object.keys(animate).reduce((acc, key) => {
-        return {...acc,
-          [key]: this.state.currentValue.interpolate(animate[key])
-        }
-      }, {});
+      const animatedStyle = Object.keys(animate)
+        .filter(key => key !== 'transform')
+        .reduce((acc, key) => {
+          return {...acc,
+            [key]: this.state.currentValue.interpolate(animate[key])
+          }
+        }, {});
+
+      if (animate.transform) {
+        const transforms = animate.transform.map(obj => {
+          const key = Object.keys(obj)[0];
+          return {
+            [key]: this.state.currentValue.interpolate(obj[key])
+          };
+        });
+
+        animatedStyle.transform = transforms;
+      }
 
       const style = {...(this.props.style || {}), ...animatedStyle}
 
@@ -58,10 +71,8 @@ function createAnimationDongle(className) {
   });
 };
 
-
 export default {
   View: createAnimationDongle('View'),
   Text: createAnimationDongle('Text'),
   Image: createAnimationDongle('Image')
 };
-
