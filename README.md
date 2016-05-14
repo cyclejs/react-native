@@ -1,7 +1,13 @@
 # Cycle React Native Driver
 ## Experimental
 
-This fork of [cyclejs/cycle-react-native](https://github.com/cyclejs/cycle-react-native) was created at the CycleConf 2016 hackathon by @ohanhi, @justinwoo, @chadrien, @sectore, @ozzee and @jevakallio. It contains a collection of ideas and hacks to test feasibility of the CycleJS architecture on React Native.
+**Install:**
+
+```
+npm install @cycle/react-native@1.0.0-experimental.12
+```
+
+This driver was built as an experiment by @staltz, and improved at the CycleConf 2016 hackathon by @ohanhi, @justinwoo, @chadrien, @sectore, @ozzee and @jevakallio. It contains a collection of ideas and hacks to test feasibility of the Cycle.js architecture on React Native.
 
 ## Features
 
