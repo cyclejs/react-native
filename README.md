@@ -1,11 +1,34 @@
 # Cycle React Native Driver
 ## Experimental
 
+This fork of [cyclejs/cycle-react-native](https://github.com/cyclejs/cycle-react-native) was created at the CycleConf 2016 hackathon by @ohanhi, @justinwoo, @chadrien, @sectore, @ozzee and @jevakallio. It contains a collection of ideas and hacks to test feasibility of the CycleJS architecture on React Native.
+
+## Features
+
+ * Custom `Touchable*` components for event delegation to support lazily created elements (e.g. navigation scenes, ListView rows)
+ * Custom `Animated` component to run animations declaratively
+ * Custom `ListView` component to manage "infinite scrolling" with `ListView.DataSource`
+ * Navigation support with `NavigationExperimental`
+
+See [jevakallio/cycle-react-native-example](https://github.com/jevakallio/cycle-react-native-example) for example of use.
+
+## Running on iOS
+
+Start by installing React Native [prerequisites](https://facebook.github.io/react-native/docs/getting-started.html) (XCode, react-native-cli, watchman).
+
+Then:
 ```
-npm install @cycle/react-native@1.0.0-experimental.12
+git clone git@github.com:jevakallio/cycle-react-native.git && cd cycle-react-native
+npm install
+react-native run-ios
 ```
 
+## Running on Android
+
+Good luck!
+
 ## Usage
+
 
 ```js
 let {Rx, run} = require('@cycle/core');
@@ -32,3 +55,4 @@ run(main, {
   RN: makeReactNativeDriver('MyMobileApp'),
 });
 ```
+
