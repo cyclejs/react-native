@@ -1,11 +1,11 @@
 'use strict';
 
-import React from 'react-native';
+import React, { PropTypes } from 'react';
+import ReactNative from 'react-native';
 
 const {
-  PropTypes,
   ListView
-} = React;
+} = ReactNative;
 
 export default React.createClass({
   displayName: 'CycleListView',

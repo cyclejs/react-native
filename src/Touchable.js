@@ -1,11 +1,11 @@
 'use strict';
 
-import React from 'react-native';
+import React, { PropTypes } from 'react';
 import {findHandler} from './driver';
+import ReactNative from 'react-native';
 const {
   View,
-  PropTypes
-} = React;
+} = ReactNative;
 
 const ACTION_TYPES = {
   onPress: 'press',
