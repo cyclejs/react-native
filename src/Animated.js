@@ -1,8 +1,8 @@
-import React from 'react-native';
+import React, { PropTypes } from 'react';
+import ReactNative from 'react-native';
 const {
   Animated,
-  PropTypes
-} = React;
+} = ReactNative;
 
 function createAnimationDongle(className) {
   return React.createClass({

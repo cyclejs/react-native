@@ -1,6 +1,7 @@
-import React from 'react-native'
+import React from 'react'
 import Rx from 'rx'
-const {AppRegistry, View} = React
+import ReactNative from 'react-native';
+const {AppRegistry, View} = ReactNative;
 
 const BACK_ACTION = '@@back';
 const backHandler = new Rx.Subject
