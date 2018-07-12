@@ -93,9 +93,9 @@ function parseSelector(param: any) {
   }
 }
 
-type Children = Array<ReactElement<any>> | string;
+export type Children = Array<ReactElement<any>> | string;
 
-type HelperSig<P> = {
+export type HelperSig<P> = {
   (sel: string): ReactElement<P>;
   (props: P): ReactElement<P>;
   (children: Children): ReactElement<P>;
