@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "strictNullChecks": true,
+    "declaration": true,
+    "sourceMap": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "module": "commonjs",
+    "target": "ES5",
+    "rootDir": "src/",
+    "outDir": "lib/cjs/",
+    "skipLibCheck": true,
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "lib": ["dom", "es5", "scripthost", "es2015"]
+  },
+  "files": ["src/index.ts"],
+  "exclude": ["node_modules"]
+}

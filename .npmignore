@@ -1,5 +1,10 @@
-examples/
-ignore/
-.idea/
-*.sublime-project
-*.sublime-workspace
+/.vscode
+/src
+/test
+/coverage
+.gitignore
+node_modules
+package-lock.json
+shrinkwrap.yaml
+yarn.lock
+tsconfig.json

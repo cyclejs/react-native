@@ -1,39 +1,51 @@
 {
   "name": "@cycle/react-native",
-  "version": "1.0.0-experimental.15",
-  "description": "A Cycle.js Driver for interacting with React Native",
-  "main": "lib/index.js",
-  "author": "Andre Staltz",
+  "version": "1.0.0",
+  "description": "Cycle.js driver that uses React Native to render",
+  "author": "Andre Staltz <contact@staltz.com>",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cyclejs/cycle-react-native"
-  },
-  "peerDependencies": {
-    "rx": ">=3",
-    "react-native": "~0.24.0"
+  "bugs": "https://github.com/cyclejs/react-native/issues",
+  "repository": "https://github.com/cyclejs/react-native/tree/master",
+  "keywords": [
+    "react",
+    "cyclejs",
+    "xstream",
+    "mvi",
+    "react-native",
+    "driver"
+  ],
+  "main": "lib/cjs/index.js",
+  "typings": "lib/cjs/index.d.ts",
+  "types": "lib/cjs/index.d.ts",
+  "dependencies": {
+    "@cycle/react": "^1.0.2",
+    "react": "16.4.x",
+    "react-native": ">=0.55.0",
+    "xstream": "11.x.x"
   },
   "devDependencies": {
-    "rx": ">=3",
-    "react-native": "~0.24.0",
-    "babel": "5.8.x",
-    "eslint": "1.0.x",
-    "eslint-config-cycle": "3.0.x",
-    "eslint-plugin-cycle": "1.0.x",
-    "eslint-plugin-no-class": "0.1.x",
-    "markdox": "0.1.9"
+    "@cycle/run": "^4.4.0",
+    "@types/mocha": "^2.2.40",
+    "@types/node": "^10.5.2",
+    "@types/react": "16.4.x",
+    "@types/react-native": "0.55.x",
+    "@types/react-test-renderer": "^16.0.1",
+    "@huston007/react-native-mock": "^0.3.3",
+    "mocha": "^5.2.0",
+    "react-test-renderer": "16.4.1",
+    "ts-node": "^7.0.0",
+    "typescript": "2.6.x",
+    "babel-cli": "^6.24.0",
+    "babel-preset-react-native": "4.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
-    "eslint": "eslint src/",
-    "test": "npm run eslint",
-    "test-ci": "npm run eslint",
-    "precompile-lib": "rm -rf lib/ && mkdir -p lib",
-    "compile-lib": "babel -d lib/ src/",
-    "docs": "node ./scripts/make-api-docs.js",
-    "prepublish": "npm run compile-lib",
-    "release": "npm run release-patch",
-    "release-patch": "git checkout master && npm version patch && git push origin master --tags && npm publish --access=public",
-    "release-minor": "git checkout master && npm version minor && git push origin master --tags && npm publish --access=public",
-    "release-major": "git checkout master && npm version major && git push origin master --tags && npm publish --access=public"
+    "prepublishOnly": "npm run compile",
+    "compile": "npm run compile-cjs && npm run compile-es6",
+    "compile-cjs": "tsc --module commonjs --outDir ./lib/cjs",
+    "compile-es6": "echo 'TODO' : tsc --module es6 --outDir ./lib/es6",
+    "test": "TS_NODE_PROJECT=test/tsconfig.json mocha test/*.ts --require @huston007/react-native-mock/mock.js --require ts-node/register --recursive"
   }
 }
