@@ -59,6 +59,29 @@ describe('helpers', function() {
     run(main, {react: testDriver});
   });
 
+  it('View w/ symbol selector', done => {
+    function main(sources: {react: ReactSource}) {
+      const foo = Symbol();
+      const vdom$ = xs.of(View(foo));
+      return {react: vdom$};
+    }
+
+    function testDriver(sink: Stream<React.ReactElement<any>>) {
+      const source = new ReactSource();
+      const Root = makeCycleReactComponent(() => ({source, sink}));
+      const r = renderer.create(React.createElement(Root as any));
+      const root = r.root;
+      setTimeout(() => {
+        const view = root.findByType(_View);
+        assert.strictEqual(!!view, true);
+        done();
+      }, 50);
+      return source;
+    }
+
+    run(main, {react: testDriver});
+  });
+
   it('View w/ selector and props', done => {
     function main(sources: {react: ReactSource}) {
       const vdom$ = xs.of(View('foo', {accessible: true}));
@@ -72,7 +95,6 @@ describe('helpers', function() {
       const root = r.root;
       setTimeout(() => {
         const view = root.findByType(_View);
-        assert.strictEqual(view.props.selector, 'foo');
         assert.strictEqual(view.props.accessible, true);
         done();
       }, 50);
@@ -96,7 +118,6 @@ describe('helpers', function() {
       setTimeout(() => {
         const view = root.findByType(_View);
         const text = view.props.children;
-        assert.strictEqual(view.props.selector, 'foo');
         assert.strictEqual(text.props.children, 'hello world');
         done();
       }, 50);
@@ -122,7 +143,6 @@ describe('helpers', function() {
       setTimeout(() => {
         const view = root.findByType(_View);
         const text = view.props.children;
-        assert.strictEqual(view.props.selector, 'foo');
         assert.strictEqual(view.props.accessible, true);
         assert.strictEqual(text.props.children, 'hello world');
         done();
@@ -171,7 +191,6 @@ describe('helpers', function() {
       setTimeout(() => {
         const view = root.findByType(_View);
         const text = view.props.children;
-        assert.strictEqual(text.props.selector, 'foo');
         assert.strictEqual(text.props.children, 'hello world');
         done();
       }, 50);

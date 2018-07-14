@@ -13,12 +13,13 @@ import {run} from '@cycle/run';
 import {makeReactNativeDriver, TouchableOpacity, View, Text} from '@cycle/react-native';
 
 function main(sources) {
-  const inc$ = sources.react.select('inc').events('click');
+  const inc = Symbol();
+  const inc$ = sources.react.select(inc).events('click');
 
   const count$ = inc$.fold(count => count + 1, 0);
 
   const elem$ = count$.map(i =>
-    TouchableOpacity('inc', [
+    TouchableOpacity(inc, [
       View([
         Text(`Counter: ${i}`),
       ])
@@ -56,17 +57,17 @@ Import hyperscript helpers such as `View`, `Text`, `TouchableOpacity`, etc to cr
 The basic usage is `View(props, children)`, but some variations and shortcuts are allowed:
 
 - `View()` becomes `<View/>`
-- `View(propsObject)` becomes `<View {...props}></View>`
+- `View(props)` becomes `<View {...props}></View>`
 - `Text('text content')` becomes `<Text>text content</Text>`
 - `View([child1, child2])`
-- `Text(propsObject, 'text content')`
-- `View(propsObject, [child1, child2])`
+- `Text(props, 'text content')`
+- `View(props, [child1, child2])`
 - etc
 
 There are also shortcuts for (MVI) intent selectors:
 
-- `Touchable('inc')` becomes `h(Touchable, {selector: 'inc'})`
-- `Touchable('inc', propsObject)` becomes `h(Touchable, {selector: 'inc', ...props})`
+- `Touchable(someSymbol)` becomes `h(Touchable, {sel: someSymbol})`
+- `Touchable(sym, props)` becomes `h(Touchable, {sel: sym, ...props})`
 - `Text('myselector', 'text content')`
 - `Touchable('inc', [child])`
 - `Touchable('inc', propsObject, [child])`

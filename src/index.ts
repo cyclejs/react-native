@@ -86,23 +86,22 @@ export function makeReactNativeDriver(appKey: string) {
 }
 
 function parseSelector(param: any) {
-  if (typeof param === 'string' && param.length > 0) {
-    return param;
-  } else {
-    return null;
-  }
+  if (typeof param === 'symbol') return param;
+  if (typeof param === 'string' && param.length > 0) return param;
+  return null;
 }
 
 export type Children = Array<ReactElement<any>> | string;
 
 export type HelperSig<P> = {
-  (sel: string): ReactElement<P>;
+  (sel: symbol): ReactElement<P>;
+  (child: string): ReactElement<P>;
   (props: P): ReactElement<P>;
   (children: Children): ReactElement<P>;
-  (sel: string, props: P): ReactElement<P>;
+  (sel: string | symbol, props: P): ReactElement<P>;
   (props: P, children: Children): ReactElement<P>;
-  (sel: string, children: Children): ReactElement<P>;
-  (sel: string, props: P, children: Children): ReactElement<P>;
+  (sel: string | symbol, children: Children): ReactElement<P>;
+  (sel: string | symbol, props: P, children: Children): ReactElement<P>;
 };
 
 export function makeHelper<P>(type: ComponentType<P>): HelperSig<P> {
@@ -111,16 +110,18 @@ export function makeHelper<P>(type: ComponentType<P>): HelperSig<P> {
     const hasB = typeof b !== 'undefined';
     const hasBChildren = Array.isArray(b) || typeof b === 'string';
     const hasC = typeof c !== 'undefined';
-    const selector = parseSelector(a);
-    if (selector) {
+    const sel = parseSelector(a);
+    if (sel) {
       if (hasB && hasC) {
-        return h(type, {...b, selector}, c);
+        return h(type, {...b, sel}, c);
       } else if (hasB && hasBChildren) {
-        return h(type, {selector} as any, b as Array<ReactElement<any>>);
+        return h(type, {sel} as any, b as Array<ReactElement<any>>);
       } else if (hasB) {
-        return h(type, {...b, selector});
+        return h(type, {...b, sel});
+      } else if (typeof sel === 'symbol') {
+        return h(type, {sel} as any);
       } else {
-        return h(type, selector as any /* child, not a selector */);
+        return h(type, sel as any /* child, not a sel */);
       }
     } else if (hasC) {
       return h(type, b, c);
