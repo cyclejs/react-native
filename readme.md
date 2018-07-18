@@ -36,7 +36,7 @@ function main(sources) {
 }
 
 run(main, {
-  react: makeReactNativeDriver('MyApp')),
+  react: makeReactNativeDriver('MyApp'),
 });
 ```
 
