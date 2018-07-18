@@ -5,6 +5,10 @@
 - Provides a driver factory `makeReactNativeDriver`
 - Contains hyperscript helper functions, such as `View()`, `Text()`, etc
 
+```
+npm install @cycle/react-native
+```
+
 ## Example
 
 ```js
