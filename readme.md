@@ -79,6 +79,13 @@ There are also shortcuts for (MVI) intent selectors:
 
 For non-built-in components (e.g. third party) components, you can use `h(ThirdPartyComponent)` with `h` from `@cycle/react` or you can build a helper using `makeHelper(ThirdPartyComponent)` with `makeHelper` from `@cycle/react-native`.
 
+## Other native drivers
+
+This library only covers React components in React Native and View-related rendering. For other native APIs in React Native, use drivers specifically built for those. See the list below:
+
+- [cycle-native-alert](https://gitlab.com/staltz/cycle-native-alert)
+- [cycle-native-keyboard](https://gitlab.com/staltz/cycle-native-keyboard)
+
 ## License
 
 MIT, Andre 'Staltz' Medeiros 2018
