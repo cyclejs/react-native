@@ -86,6 +86,7 @@ This library only covers React components in React Native and View-related rende
 - [cycle-native-alert](https://gitlab.com/staltz/cycle-native-alert)
 - [cycle-native-keyboard](https://gitlab.com/staltz/cycle-native-keyboard)
 - [cycle-native-linking](https://gitlab.com/staltz/cycle-native-linking)
+- [cycle-native-toastandroid](https://gitlab.com/staltz/cycle-native-toastandroid)
 - [cycle-native-android-local-notification](https://gitlab.com/staltz/cycle-native-android-local-notification)
 - (please build more of these and add them here!)
 
