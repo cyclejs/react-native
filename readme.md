@@ -84,10 +84,11 @@ For non-built-in components (e.g. third party) components, you can use `h(ThirdP
 This library only covers React components in React Native and View-related rendering. For other native APIs in React Native, use drivers specifically built for those. See the list below:
 
 - [cycle-native-alert](https://gitlab.com/staltz/cycle-native-alert)
+- [cycle-native-android-local-notification](https://gitlab.com/staltz/cycle-native-android-local-notification)
 - [cycle-native-keyboard](https://gitlab.com/staltz/cycle-native-keyboard)
 - [cycle-native-linking](https://gitlab.com/staltz/cycle-native-linking)
+- [cycle-native-share](https://gitlab.com/staltz/cycle-native-share)
 - [cycle-native-toastandroid](https://gitlab.com/staltz/cycle-native-toastandroid)
-- [cycle-native-android-local-notification](https://gitlab.com/staltz/cycle-native-android-local-notification)
 - (please build more of these and add them here!)
 
 ## License
