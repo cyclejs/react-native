@@ -12,9 +12,9 @@
     "outDir": "lib/cjs/",
     "skipLibCheck": true,
     "noImplicitAny": true,
+    "newLine": "LF",
     "moduleResolution": "node",
     "lib": ["dom", "es5", "scripthost", "es2015"]
   },
-  "files": ["src/index.ts"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*"]
 }

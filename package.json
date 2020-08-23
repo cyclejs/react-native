@@ -1,6 +1,6 @@
 {
   "name": "@cycle/react-native",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "description": "Cycle.js driver that uses React Native to render",
   "author": "Andre Staltz <contact@staltz.com>",
   "license": "MIT",
@@ -14,38 +14,49 @@
     "react-native",
     "driver"
   ],
+  "files": [
+    "lib"
+  ],
   "main": "lib/cjs/index.js",
   "typings": "lib/cjs/index.d.ts",
-  "types": "lib/cjs/index.d.ts",
   "dependencies": {
-    "@cycle/react": "1.4.x",
-    "react": "16.4.x",
-    "react-native": ">=0.55.0",
-    "xstream": "11.x.x"
+    "@cycle/react": "2.x",
+    "@cycle/run": "5.x",
+    "xstream": "11.x"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-native": ">=0.60.0"
   },
   "devDependencies": {
-    "@cycle/run": "^4.4.0",
-    "@types/mocha": "^2.2.40",
-    "@types/node": "^10.5.2",
-    "@types/react": "16.4.x",
-    "@types/react-native": "0.55.x",
-    "@types/react-test-renderer": "^16.0.1",
+    "@cycle/run": "^5.4.0",
     "@huston007/react-native-mock": "^0.3.3",
-    "mocha": "^5.2.0",
-    "react-test-renderer": "16.4.1",
-    "ts-node": "^7.0.0",
-    "typescript": "2.6.x",
-    "babel-cli": "^6.24.0",
-    "babel-preset-react-native": "4.0.0"
+    "@types/mocha": "^8.0.3",
+    "@types/node": "^14.6.0",
+    "@types/react": "16.9.46",
+    "@types/react-native": "0.63.8",
+    "@types/react-test-renderer": "^16.9.3",
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-native": "4.0.1",
+    "expo": "38.x.x",
+    "mocha": "^8.1.1",
+    "prettier": "^2.0.5",
+    "react": ">=16.8.0",
+    "react-native": ">=0.60.0",
+    "react-test-renderer": "16.13.1",
+    "ts-node": "^8.10.2",
+    "typescript": "3.9.7",
+    "xstream": "^11.12.0"
   },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
     "prepublishOnly": "npm run compile",
-    "compile": "npm run compile-cjs && npm run compile-es6",
+    "compile": "rm -rf lib && npm run compile-cjs && npm run compile-es6",
     "compile-cjs": "tsc --module commonjs --outDir ./lib/cjs",
-    "compile-es6": "echo 'TODO' : tsc --module es6 --outDir ./lib/es6",
-    "test": "TS_NODE_PROJECT=test/tsconfig.json mocha test/*.ts --require @huston007/react-native-mock/mock.js --require ts-node/register --recursive"
-  }
+    "compile-es6": "tsc --module es6 --outDir ./lib/es6",
+    "test": "ts-node -P test/tsconfig.json --require @huston007/react-native-mock/mock.js node_modules/mocha/bin/mocha test/*.ts"
+  },
+  "prettier": {}
 }
