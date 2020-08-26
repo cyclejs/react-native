@@ -20,15 +20,15 @@ class _Touchable extends React.PureComponent<any, any> {
   }
 }
 
-describe('helpers', function() {
-  it('Touchable w/ selector, Text w/ text child, View w/ children', done => {
+describe('helpers', function () {
+  it('Touchable w/ selector, Text w/ text child, View w/ children', (done) => {
     const Touchable = makeHelper(_Touchable);
 
     function main(sources: {react: ReactSource}) {
       const inc$ = sources.react.select('button').events('press');
       const count$ = inc$.fold((acc: number, x: any) => acc + 1, 0);
       const vdom$ = count$.map((i: number) =>
-        Touchable('button', [View([Text('' + i)])]),
+        Touchable('button', [View([Text('' + i)])])
       );
       return {react: vdom$};
     }
@@ -59,7 +59,7 @@ describe('helpers', function() {
     run(main, {react: testDriver});
   });
 
-  it('View w/ symbol selector', done => {
+  it('View w/ symbol selector', (done) => {
     function main(sources: {react: ReactSource}) {
       const foo = Symbol();
       const vdom$ = xs.of(View(foo));
@@ -82,7 +82,7 @@ describe('helpers', function() {
     run(main, {react: testDriver});
   });
 
-  it('View w/ selector and props', done => {
+  it('View w/ selector and props', (done) => {
     function main(sources: {react: ReactSource}) {
       const vdom$ = xs.of(View('foo', {accessible: true}));
       return {react: vdom$};
@@ -104,7 +104,7 @@ describe('helpers', function() {
     run(main, {react: testDriver});
   });
 
-  it('View w/ selector and children', done => {
+  it('View w/ selector and children', (done) => {
     function main(sources: {react: ReactSource}) {
       const vdom$ = xs.of(View('foo', [Text('hello world')]));
       return {react: vdom$};
@@ -127,10 +127,10 @@ describe('helpers', function() {
     run(main, {react: testDriver});
   });
 
-  it('View w/ selector and props and children', done => {
+  it('View w/ selector and props and children', (done) => {
     function main(sources: {react: ReactSource}) {
       const vdom$ = xs.of(
-        View('foo', {accessible: true}, [Text('hello world')]),
+        View('foo', {accessible: true}, [Text('hello world')])
       );
       return {react: vdom$};
     }
@@ -153,7 +153,7 @@ describe('helpers', function() {
     run(main, {react: testDriver});
   });
 
-  it('View w/ props and children', done => {
+  it('View w/ props and children', (done) => {
     function main(sources: {react: ReactSource}) {
       const vdom$ = xs.of(View({accessible: true}, [Text('hello world')]));
       return {react: vdom$};
@@ -177,7 +177,7 @@ describe('helpers', function() {
     run(main, {react: testDriver});
   });
 
-  it('Text w/ selector and text child', done => {
+  it('Text w/ selector and text child', (done) => {
     function main(sources: {react: ReactSource}) {
       const vdom$ = xs.of(View([Text('foo', 'hello world')]));
       return {react: vdom$};
