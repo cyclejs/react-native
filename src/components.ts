@@ -25,8 +25,8 @@ import {
   TouchableOpacity as _TouchableOpacity,
   TouchableWithoutFeedback as _TouchableWithoutFeedback,
   View as _View,
-} from "react-native";
-import { makeHelper } from "./helper";
+} from 'react-native';
+import {makeHelper} from './helper';
 
 export const ActivityIndicator = makeHelper(_ActivityIndicator);
 export const Button = makeHelper(_Button);

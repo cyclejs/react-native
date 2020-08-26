@@ -58,5 +58,9 @@
     "compile-es6": "tsc --module es6 --outDir ./lib/es6",
     "test": "ts-node -P test/tsconfig.json --require @huston007/react-native-mock/mock.js node_modules/mocha/bin/mocha test/*.ts"
   },
-  "prettier": {}
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "bracketSpacing": false
+  }
 }

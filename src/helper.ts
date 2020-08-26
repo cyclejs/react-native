@@ -1,9 +1,9 @@
-import { ReactElement, ComponentType } from "react";
-import { h } from "@cycle/react";
+import {ReactElement, ComponentType} from 'react';
+import {h} from '@cycle/react';
 
 function parseSelector(param: any) {
-  if (typeof param === "symbol") return param;
-  if (typeof param === "string" && param.length > 0) return param;
+  if (typeof param === 'symbol') return param;
+  if (typeof param === 'string' && param.length > 0) return param;
   return null;
 }
 
@@ -22,20 +22,20 @@ export type HelperSig<P> = {
 
 export function makeHelper<P>(type: ComponentType<P>): HelperSig<P> {
   return function helper(a?: any, b?: any, c?: any): ReactElement<P> {
-    const hasA = typeof a !== "undefined";
-    const hasB = typeof b !== "undefined";
-    const hasBChildren = Array.isArray(b) || typeof b === "string";
-    const hasC = typeof c !== "undefined";
+    const hasA = typeof a !== 'undefined';
+    const hasB = typeof b !== 'undefined';
+    const hasBChildren = Array.isArray(b) || typeof b === 'string';
+    const hasC = typeof c !== 'undefined';
     const sel = parseSelector(a);
     if (sel) {
       if (hasB && hasC) {
-        return h(type, { ...b, sel }, c);
+        return h(type, {...b, sel}, c);
       } else if (hasB && hasBChildren) {
-        return h(type, { sel } as any, b as Array<ReactElement<any>>);
+        return h(type, {sel} as any, b as Array<ReactElement<any>>);
       } else if (hasB) {
-        return h(type, { ...b, sel });
-      } else if (typeof sel === "symbol") {
-        return h(type, { sel } as any);
+        return h(type, {...b, sel});
+      } else if (typeof sel === 'symbol') {
+        return h(type, {sel} as any);
       } else {
         return h(type, sel as any /* child, not a sel */);
       }
