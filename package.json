@@ -20,7 +20,8 @@
   "main": "lib/cjs/index.js",
   "typings": "lib/cjs/index.d.ts",
   "dependencies": {
-    "@cycle/react": "2.x"
+    "@cycle/react": "2.x",
+    "xstream": "11.x.x"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
