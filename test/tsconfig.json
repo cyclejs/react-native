@@ -6,7 +6,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "module": "commonjs",
     "target": "ES5",
-    "rootDir": "./",
+    "rootDir": "../",
     "outDir": "lib/",
     "lib": [
       "dom",

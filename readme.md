@@ -40,6 +40,7 @@ run(main, {
 });
 ```
 
+
 ## Installation
 
 Start by installing React Native prerequisites (XCode, react-native-cli, watchman).
