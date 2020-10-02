@@ -22,11 +22,14 @@ import {
   TouchableOpacity as _TouchableOpacity,
   TouchableWithoutFeedback as _TouchableWithoutFeedback,
   View as _View,
+  ButtonProps,
 } from 'react-native';
 import {makeHelper} from './helper';
 
+type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
+
 export const ActivityIndicator = makeHelper(_ActivityIndicator);
-export const Button = makeHelper(_Button);
+export const Button = makeHelper<Optional<ButtonProps, 'onPress'>>(_Button);
 export const DrawerLayoutAndroid = makeHelper(_DrawerLayoutAndroid);
 export const FlatList = makeHelper(_FlatList);
 export const Image = makeHelper(_Image);
