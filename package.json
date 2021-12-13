@@ -1,6 +1,6 @@
 {
   "name": "@cycle/react-native",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Cycle.js driver that uses React Native to render",
   "author": "Andre Staltz <contact@staltz.com>",
   "license": "MIT",
