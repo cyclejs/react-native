@@ -35,7 +35,7 @@ function main(sources) {
   };
 }
 
-# add a shim for handling scheduled tasks
+// Necessary shim in React Native's JS engine
 global.queueMicrotask = fn => setTimeout(fn, 1);
 
 run(main, {
