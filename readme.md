@@ -18,7 +18,7 @@ import {makeReactNativeDriver, TouchableOpacity, View, Text} from '@cycle/react-
 
 function main(sources) {
   const inc = Symbol();
-  const inc$ = sources.react.select(inc).events('click');
+  const inc$ = sources.react.select(inc).events('press');
 
   const count$ = inc$.fold(count => count + 1, 0);
 
@@ -34,6 +34,9 @@ function main(sources) {
     react: elem$,
   };
 }
+
+// Necessary shim in React Native's JS engine
+global.queueMicrotask = fn => setTimeout(fn, 1);
 
 run(main, {
   react: makeReactNativeDriver('MyApp'),
